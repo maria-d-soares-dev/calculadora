@@ -1,0 +1,773 @@
+/*
+O asterisco (*) é chamado de seletor universal.
+
+Ele seleciona todos os elementos da página:
+body, main, div, input, button, p e assim por diante.
+*/
+
+
+/* Faz o navegador incluir bordas e padding no tamanho dos elementos. */
+* {
+
+
+    /*
+   Por padrão, a largura de um elemento considera somente o conteúdo.
+   O padding e a borda são somados por fora dessa largura.
+
+   Com border-box, a largura informada já inclui:
+   - conteúdo;
+   - padding;
+   - borda.
+
+   Isso facilita bastante o controle do tamanho dos elementos.
+   */
+
+
+    box-sizing: border-box;
+}
+
+
+
+/*
+body seleciona o corpo da página, ou seja, toda a área visível.
+*/
+body {
+
+
+
+    /*
+    vh significa "viewport height", ou altura da área visível.
+
+    100vh corresponde a 100% da altura da tela.
+    Usamos min-height, e não height, para permitir que o body cresça
+    caso o conteúdo precise de mais espaço.
+    */
+    min-height: 100vh;
+
+
+    /*
+    O navegador normalmente aplica uma pequena margem ao body.
+    margin: 0 remove essa margem padrão.
+    */
+    margin: 0;
+
+    /*
+   Transforma o body em um contêiner flexível.
+
+   Isso permite usar propriedades do Flexbox, como align-items,
+   para posicionar os elementos dentro do body.
+   */
+    display: flex;
+
+    /*
+   Como o body usa display: flex, align-items controla
+   o alinhamento no eixo transversal.
+
+   Neste caso, o eixo transversal é vertical.
+   Portanto, center centraliza o conteúdo verticalmente na tela.
+   */
+    align-items: center;
+
+    /*
+    Fundo  escuro com tons de azul-marinho e roxo profundo.
+    As três cores formam o degradê diagonal.
+    */
+
+
+    /*
+   Cria um degradê linear no fundo da página.
+
+   135deg:
+   indica o ângulo do degradê.
+   A transição das cores acontece em uma direção diagonal.
+
+   #11101c 0%:
+   primeira cor, presente no início do degradê.
+
+   #211936 50%:
+   segunda cor, posicionada no meio do degradê.
+
+   #302044 100%:
+   terceira cor, presente no final do degradê.
+
+   As porcentagens indicam a posição de cada cor.
+   O navegador cria automaticamente as transições entre elas.
+   */
+    background: linear-gradient(
+            135deg,
+            #11101c 0%,
+            #211936 50%,
+            #302044 100%
+    );
+
+
+    /*
+   Define uma lista de fontes em ordem de preferência.
+
+   O navegador tenta usar Arial primeiro.
+   Se não estiver disponível, tenta Helvetica.
+   Se nenhuma das duas estiver disponível, usa qualquer fonte
+   sem serifa instalada no sistema.
+   */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+Seleciona a tag <main> do HTML.
+*/
+main {
+
+    /*
+   Faz o conteúdo principal ocupar toda a largura disponível.
+
+   Isso é importante porque o main está dentro de um body
+   que utiliza display: flex.
+
+   Sem width: 100%, o main poderia ocupar somente a largura
+   necessária para comportar o conteúdo.
+   */
+    width: 100%;
+}
+
+
+/*
+O ponto antes do nome indica uma classe.
+
+.calculadora-card seleciona o elemento que possui:
+
+class="calculadora-card"
+
+No HTML, ele também possui a classe "card" do Bootstrap.
+*/
+.calculadora-card {
+    /*
+    Define a cor do fundo do cartão.
+
+    Ela é quase branca, mas tem um tom levemente acinzentado.
+    Isso reduz o contraste agressivo com o fundo escuro.
+    */
+    background-color: #f8f7fa;
+
+    /*
+    Cria uma borda ao redor do cartão.
+
+    1px:
+    espessura da borda.
+
+    solid:
+    estilo da borda, neste caso uma linha contínua.
+
+    rgba(181, 156, 204, 0.28):
+    cor da borda.
+
+    Em rgba:
+    - 181 é a quantidade de vermelho;
+    - 156 é a quantidade de verde;
+    - 204 é a quantidade de azul;
+    - 0.28 é a opacidade.
+
+    A opacidade varia de 0 a 1:
+    0 significa completamente transparente;
+    1 significa completamente opaco.
+    */
+    border: 1px solid rgba(181, 156, 204, 0.28);
+
+
+    /*
+    Arredonda os cantos do cartão em 24 pixels.
+
+    Quanto maior o valor, mais arredondado o canto fica.
+    */
+    border-radius: 24px;
+
+    /*
+    Esconde qualquer conteúdo que ultrapasse os limites do cartão.
+
+    Isso também garante que os elementos internos não apareçam
+    além dos cantos arredondados.
+    */
+    overflow: hidden;
+
+
+    /*
+    Adiciona uma sombra ao cartão.
+
+    Os valores significam, nesta ordem:
+
+    0:
+    deslocamento horizontal.
+    A sombra não se move para a esquerda nem para a direita.
+
+    24px:
+    deslocamento vertical.
+    A sombra aparece principalmente abaixo do cartão.
+
+    60px:
+    nível de desfoque.
+    Quanto maior o número, mais espalhada e suave fica a sombra.
+
+    rgba(5, 3, 12, 0.55):
+    cor quase preta com 55% de opacidade.
+    */
+    box-shadow: 0 24px 60px rgba(5, 3, 12, 0.55);
+}
+
+
+/*
+Seleciona a div que contém o símbolo ±.
+*/
+.icone-calculadora {
+    /*
+   Define uma largura fixa de 70 pixels.
+   */
+    width: 70px;
+    /*
+    Define uma altura fixa de 70 pixels.
+    */
+    height: 70px;
+
+    /*
+   margin recebe três valores:
+
+   0:
+   margem superior.
+
+   auto:
+   margens direita e esquerda.
+   O navegador divide o espaço disponível igualmente entre os lados,
+   centralizando horizontalmente o elemento.
+
+   20px:
+   margem inferior.
+   Cria espaço entre o ícone e o título.
+
+   Portanto, isto equivale a:
+
+   margin-top: 0;
+   margin-right: auto;
+   margin-bottom: 20px;
+   margin-left: auto;
+   */
+    margin: 0 auto 20px;
+
+
+    /*
+    Transforma o ícone em um contêiner flexível.
+    Isso permite centralizar o símbolo ± dentro dele.
+    */
+    display: flex;
+
+    /*
+   Centraliza o símbolo verticalmente.
+   */
+    align-items: center;
+
+    /*
+    Centraliza o símbolo horizontalmente.
+    */
+    justify-content: center;
+
+        /*
+        Arredonda os cantos do ícone.
+        */
+    border-radius: 20px;
+
+
+    /*
+    Define a cor do símbolo ± como branca.
+    */
+    color: #ffffff;
+
+    /*
+   Cria um degradê diagonal no fundo do ícone.
+
+   #553066 é um roxo mais escuro.
+   #765080 é um roxo um pouco mais claro.
+
+   Como não indicamos porcentagens, o navegador posiciona
+   automaticamente uma cor no começo e outra no final.
+   */
+    background: linear-gradient(
+            135deg,
+            #553066,
+            #765080
+    );
+
+    /*
+    Define o tamanho do símbolo ±.
+    */
+    font-size: 42px;
+
+    /*
+    Deixa o símbolo em negrito.
+    */
+    font-weight: bold;
+
+
+    /*
+   Adiciona uma sombra roxa ao redor do ícone.
+
+   0:
+   nenhum deslocamento horizontal.
+
+   10px:
+   deslocamento para baixo.
+
+   25px:
+   desfoque.
+
+   0.35:
+   35% de opacidade.
+   */
+    box-shadow: 0 10px 25px rgba(85, 48, 102, 0.35);
+}
+
+/*
+Seleciona todos os elementos que possuem a classe form-label.
+
+Essa classe é do Bootstrap e está aplicada aos <label> do formulário.
+Aqui estamos personalizando uma classe originalmente fornecida
+pelo Bootstrap.
+*/
+.form-label {
+    /*
+    Define uma cor roxa escura para o texto dos rótulos.
+    */
+    color: #493052;
+
+    /*
+    Define a espessura da fonte.
+
+    400 geralmente representa o peso normal.
+    600 representa um seminegrito.
+    700 geralmente representa negrito.
+    */
+    font-weight: 600;
+}
+
+/*
+A vírgula permite aplicar o mesmo conjunto de regras
+a mais de um seletor.
+
+Estas regras serão aplicadas tanto aos elementos com
+form-control quanto aos elementos com form-select.
+
+No projeto:
+- form-control está nos campos numéricos;
+- form-select está na lista de operações.
+*/
+.form-control,
+.form-select {
+    /*
+   Define a cor do texto digitado ou selecionado.
+   */
+    color: #24202a;
+
+
+    /*
+    Define o fundo dos campos como branco.
+    */
+    background-color: #ffffff;
+
+
+    /*
+        Cria uma borda contínua com 2 pixels de espessura.
+        */
+    border: 2px solid #ded8e3;
+
+    /*
+    Arredonda os cantos dos campos.
+    */
+    border-radius: 12px;
+}
+
+
+/*
+:focus é uma pseudoclasse.
+
+Ela representa o estado em que um elemento está selecionado
+para receber entrada do usuário.
+
+Isso acontece, por exemplo, quando o usuário:
+- clica no campo;
+- chega ao campo usando a tecla Tab.
+
+As regras abaixo são aplicadas tanto ao campo numérico
+quanto à lista de operações quando recebem foco.
+*/
+.form-control:focus,
+.form-select:focus {
+
+    /*
+    Muda a borda para roxo.
+    Isso indica visualmente qual campo está ativo.
+    */
+    border-color: #84628f;
+
+    /*
+    Cria um contorno suave ao redor do campo.
+
+    Neste caso, os dois primeiros zeros indicam que a sombra
+    não será deslocada horizontal nem verticalmente.
+
+    O terceiro zero significa que não haverá desfoque.
+
+    4px é o espalhamento da sombra.
+    Ela cresce 4 pixels ao redor do campo.
+
+    A cor possui 18% de opacidade.
+    */
+    box-shadow: 0 0 0 4px rgba(132, 98, 143, 0.18);
+}
+
+/*
+::placeholder é um pseudoelemento.
+
+Ele seleciona apenas o texto temporário mostrado dentro dos inputs,
+como "Exemplo: 10" e "Exemplo: 2".
+
+Usamos dois-pontos duplos porque estamos selecionando uma parte
+específica do elemento, e não um estado dele.
+*/
+.form-control::placeholder {
+
+    /*
+    Deixa o texto de exemplo mais discreto.
+    */
+    color: #928b98;
+}
+
+
+/*
+Seleciona elementos com a classe btn-primary.
+
+Essa classe pertence ao Bootstrap, mas aqui estamos substituindo
+parte da aparência padrão para criar nosso próprio botão.
+*/
+.btn-primary {
+
+    /*
+   Remove a borda padrão do botão.
+   */
+    border: none;
+
+    /*
+   Arredonda os cantos.
+   */
+    border-radius: 12px;
+
+
+    /*
+   Define o texto do botão como branco.
+   */
+    color: #ffffff;
+
+    /*
+   Aplica ao botão o mesmo degradê roxo utilizado no ícone.
+   */
+    background: linear-gradient(
+            135deg,
+            #553066,
+            #765080
+    );
+
+
+    /*
+    Deixa o texto do botão seminegrito.
+    */
+    font-weight: 600;
+
+
+    /*
+   Adiciona uma sombra roxa abaixo do botão.
+
+   0:
+   sem deslocamento horizontal.
+
+   8px:
+   deslocamento vertical.
+
+   18px:
+   desfoque.
+
+   0.25:
+   25% de opacidade.
+   */
+    box-shadow: 0 8px 18px rgba(85, 48, 102, 0.25);
+}
+
+/*
+:hover representa o estado em que o ponteiro do mouse
+está sobre o elemento.
+
+Estas regras só aparecem enquanto o mouse estiver sobre o botão.
+*/
+.btn-primary:hover {
+
+    /*
+   Mantém o texto branco.
+
+   Essa declaração também evita que o Bootstrap altere
+   a cor do texto durante o hover.
+   */
+    color: #ffffff;
+
+
+    /*
+    Usa um degradê um pouco mais escuro.
+
+    Essa mudança fornece uma resposta visual e ajuda o usuário
+    a perceber que o botão pode ser clicado.
+    */
+    background: linear-gradient(
+            135deg,
+            #462651,
+            #63406e
+    );
+}
+
+/*
+Estas regras são aplicadas a dois estados do botão:
+
+:active:
+enquanto o botão está sendo pressionado.
+
+:focus:
+quando o botão recebe foco, seja por clique, seja pela tecla Tab.
+*/
+.btn-primary:active,
+.btn-primary:focus {
+
+    /*
+   Mantém o texto branco.
+
+   !important aumenta a prioridade desta declaração.
+   Isso ajuda a impedir que os estilos do Bootstrap
+   substituam esta configuração.
+
+   Importante: !important faz parte do CSS.
+   Não deve estar dentro de tags HTML como <strong>.
+   */
+    color: #ffffff !important;
+
+    /*
+    Escurece o botão quando ele está ativo ou em foco.
+    */
+    background: linear-gradient(
+            135deg,
+            #3b2045,
+            #573360
+    ) !important;
+
+    /*
+   Mantém a borda transparente.
+
+   transparent significa que a cor existe, mas é invisível.
+   */
+    border-color: transparent !important;
+
+    /*
+    Cria um contorno roxo de 4 pixels ao redor do botão.
+    Esse contorno ajuda a indicar que o botão está em foco.
+    */
+    box-shadow: 0 0 0 4px rgba(132, 98, 143, 0.22) !important;
+}
+
+/*
+Seleciona a área na qual o resultado da conta será mostrado.
+
+Esta é a aparência inicial da área, antes de ocorrer
+um resultado correto ou um erro.
+*/
+.resultado {
+
+    /*
+   Cria um espaço interno de 18 pixels em todos os lados.
+
+   Isso impede que o texto fique encostado na borda.
+   */
+    padding: 18px;
+
+
+    /*
+        Cria uma borda tracejada.
+
+        2px:
+        espessura.
+
+        dashed:
+        estilo tracejado.
+
+        #baa8c2:
+        cor roxa clara.
+        */
+    border: 2px dashed #baa8c2;
+
+    /*
+   Arredonda os cantos da área de resultado.
+   */
+    border-radius: 14px;
+
+    /*
+    Define a cor inicial do texto.
+    */
+    color: #553a60;
+
+    /*
+    Aplica um fundo roxo muito claro.
+    */
+    background-color: #f0ebf3;
+
+
+    /*
+   Centraliza horizontalmente o texto.
+   */
+    text-align: center;
+
+    /*
+    Define o tamanho do texto.
+    */
+    font-size: 18px;
+
+    /*
+   Deixa o texto seminegrito.
+   */
+    font-weight: 600;
+}
+
+
+/*
+Esta classe representa um cálculo realizado com sucesso.
+
+Ela não está inicialmente no HTML.
+O JavaScript adiciona essa classe depois de calcular:
+
+areaResultado.classList.add("resultado-sucesso");
+
+O elemento continua com a classe resultado e recebe também
+a classe resultado-sucesso.
+*/
+.resultado-sucesso {
+
+    /*
+   Substitui somente a cor da borda definida em .resultado.
+
+   O estilo continua tracejado e com 2px porque estamos alterando
+   apenas border-color.
+   */
+    border-color: #86efac;
+    /*
+        Define o texto como verde-escuro.
+        */
+    color: #166534;
+    /*
+   Define um fundo verde muito claro.
+   */
+    background-color: #f0fdf4;
+}
+
+
+/*
+Esta classe representa uma mensagem de erro.
+
+Seu JavaScript adiciona essa classe quando o usuário tenta
+realizar uma divisão por zero:
+
+areaResultado.classList.add("resultado-erro");
+*/
+.resultado-erro {
+
+    /*
+    Substitui a cor da borda pela cor vermelha clara.
+    */
+    border-color: #fca5a5;
+
+    /*
+        Define o texto como vermelho-escuro.
+        */
+    color: #991b1b;
+
+    /*
+  Define um fundo vermelho muito claro.
+  */
+    background-color: #fef2f2;
+}
+
+/*
+Seleciona o parágrafo abaixo do cartão que possui
+a classe texto-rodape.
+*/
+.texto-rodape {
+
+    /*
+   Usa uma cor clara para que o texto consiga aparecer
+   sobre o fundo escuro da página.
+   */
+    color: #d1c8d7;
+
+    /*
+    Deixa o rodapé um pouco menor do que o texto comum.
+    */
+    font-size: 14px;
+}
+
+/*
+@media cria uma consulta de mídia.
+
+As regras dentro deste bloco só serão aplicadas
+quando a condição for verdadeira.
+
+max-width: 576px significa:
+"aplique estas regras quando a largura da tela for
+igual ou inferior a 576 pixels".
+
+Em geral, isso afeta celulares e janelas pequenas.
+*/
+@media (max-width: 576px) {
+
+    /*
+   Estas declarações modificam o body somente em telas pequenas.
+   */
+    body {
+
+        /*
+        Na tela grande, align-items: center centraliza o conteúdo
+        verticalmente.
+
+        No celular, flex-start posiciona o conteúdo no começo
+        do eixo vertical, ou seja, próximo ao topo.
+
+        Isso evita problemas quando a altura da calculadora
+        é maior do que a altura disponível na tela.
+        */
+        align-items: flex-start;
+
+
+        /*
+        Adiciona 30 pixels de espaço entre o topo da página
+        e a calculadora.
+        */
+        padding-top: 30px;
+
+        /*
+               Adiciona 30 pixels de espaço abaixo do conteúdo.
+
+               Esse espaço evita que o cartão fique encostado
+               no final da tela.
+               */
+        padding-bottom: 30px;
+    }
+    /*
+       Modifica o cartão somente em telas com até 576 pixels.
+       */
+    .calculadora-card {
+
+        /*
+       Reduz um pouco o arredondamento dos cantos no celular.
+
+       Na tela maior, o cartão tem border-radius: 24px.
+       No celular, ele passa a ter 18px.
+       */
+        border-radius: 18px;
+    }
+}

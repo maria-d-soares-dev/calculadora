@@ -1,0 +1,570 @@
+<!--
+Informa ao navegador que este documento usa HTML5.
+Não é exatamente uma tag HTML, mas uma declaração sobre o tipo do documento.
+-->
+
+<!DOCTYPE html>
+
+<!--
+A tag <html> contém todo o documento HTML.
+lang="pt-BR" informa que o conteúdo está em português do Brasil.
+Isso ajuda navegadores, mecanismos de busca e leitores de tela.
+-->
+
+<html lang="pt-BR">
+
+<!-- o head contem informações e configurações da pagina. o conteudo do head
+normalmente nao aparece diretamente dentro da pagina. fica o titulo configurações,
+importacoes de css e outras informações -->
+<head>
+
+    <!-- define a codificação de caracteres, permitindo exibir corretamente
+    os acentos cedilha etc-->
+    <meta charset="UTF-8">
+
+    <!--
+ configura a página para funcionar corretamente em diferentes tamanhos de tela,
+ especialmente celulares e tablets.
+
+ name="viewport":
+ indica que estamos configurando a área visível da página.
+
+ width=device-width:
+ faz a largura da página acompanhar a largura da tela do aparelho.
+
+ initial-scale=1:
+ determina que a página começará com zoom normal, ou seja, 100%.
+ -->
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+    >
+    <!--
+       define o título exibido na aba do navegador.
+       não é o título que aparece dentro da página.
+       -->
+    <title>Calculadora</title>
+
+    <!--
+       Importa o CSS do Bootstrap pela internet.
+
+       <link> conecta o HTML a um recurso externo.
+
+       href:
+       contém o endereço do arquivo que será carregado.
+
+       rel="stylesheet":
+       informa ao navegador que o arquivo carregado é uma folha de estilos CSS.
+
+       O Bootstrap fornece classes prontas como:
+       - container;
+       - row;
+       - col-12;
+       - card;
+       - btn;
+       - text-center;
+       - mb-4.
+       -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    >
+    <!--
+       Importa o arquivo CSS (que esta na mesma pagina)
+
+      como style.css vem depois do Bootstrap, as regras podem modificar
+       ou substituir algumas regras do bootstrap.
+
+       O arquivo *precisa* estar na mesma pasta do index.html para esse caminho funcionar.
+       -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<!--
+O <body> contém tudo o que aparece visualmente na página.
+-->
+<body>
+
+<!--
+<main> representa o conteúdo principal da página.
+
+Deve existir, normalmente, apenas um <main> por página.
+
+class="container" é uma classe do Bootstrap.
+Ela organiza o conteúdo, limita a largura e adiciona espaçamento nas laterais.
+-->
+<main class="container">
+
+
+    <!--
+    Esta <div> cria uma linha usando o sistema de grade do Bootstrap.
+
+    <div> é um contêiner genérico usado para agrupar elementos.
+
+    row:
+    cria uma linha da grade.
+
+    justify-content-center:
+    centraliza horizontalmente o conteúdo dentro da linha.
+    -->
+    <div class="row justify-content-center">
+
+        <!--
+       esta <div> funciona como uma coluna do Bootstrap.
+
+       o Bootstrap divide cada linha em 12 partes.
+
+       col-12:
+       em telas pequenas, a coluna ocupa 12 de 12 partes, ou seja, toda a largura.
+
+       col-md-8:
+       em telas médias, ocupa 8 de 12 partes.
+
+       col-lg-5:
+       em telas grandes, ocupa 5 de 12 partes.
+
+       por isso a calculadora fica larga no celular e mais estreita no computador.
+       -->
+        <div class="col-12 col-md-8 col-lg-5">
+
+
+            <!--
+           cria o cartão que contém a calculadora.
+
+           card:
+           é uma classe pronta do Bootstrap para criar cartões.
+
+           calculadora-card:
+           é uma classe criada no style.css.
+           ela adiciona bordas arredondadas, sombra e outras configurações.
+           um elemento pode ter várias classes separadas por espaços.
+           -->
+            <div class="card calculadora-card">
+
+
+                <!--
+               Representa o conteúdo interno do cartão.
+
+               card-body:
+               classe do Bootstrap para o corpo de um cartão.
+
+               p-4:
+               adiciona padding, ou espaçamento interno, de tamanho 4.
+
+               p-md-5:
+               a partir de telas médias, aumenta o padding para tamanho 5.
+               -->
+                <div class="card-body p-4 p-md-5">
+
+
+                    <!--
+                    Agrupa o cabeçalho visual da calculadora.
+
+                    text-center:
+                    centraliza o texto e os elementos internos.
+
+                    mb-4:
+                    adiciona margin-bottom de tamanho 4.
+                    Isso cria espaço abaixo deste grupo.
+
+                    No Bootstrap:
+                    m = margin
+                    b = bottom
+                    4 = tamanho do espaçamento
+                    -->
+                    <div class="text-center mb-4">
+
+
+                        <!--
+                       Exibe o ícone da calculadora.
+
+                       icone-calculadora é uma classe criada no style.css.
+                       O CSS transforma esta <div> em um quadrado colorido
+                       e centraliza o símbolo dentro dela.
+
+                       O símbolo ± é apenas texto.
+                       -->
+                        <div class="icone-calculadora">
+                            ±
+                        </div>
+
+
+                        <!--
+                       <h1> é o título principal da página.
+
+                       É importante usar <h1> por significado semântico,
+                       mesmo que seu tamanho seja alterado visualmente.
+
+                       h2:
+                       classe do Bootstrap que dá ao <h1> o tamanho visual de um <h2>.
+
+                       Portanto, semanticamente continua sendo um <h1>,
+                       mas visualmente recebe o tamanho de um <h2>.
+
+                       mb-2:
+                       adiciona um pequeno espaço abaixo do título.
+                       -->
+                        <h1 class="h2 mb-2">
+                            Calculadora
+                        </h1>
+
+
+                        <!--
+                        <p> representa um parágrafo.
+
+                        text-secondary:
+                        aplica uma cor de texto secundária, geralmente cinza.
+
+                        mb-0:
+                        remove a margem inferior padrão do parágrafo.
+                        -->
+                        <p class="text-secondary mb-0">
+                            Informe os números e escolha a operação.
+                        </p>
+                    </div>
+
+
+                    <!--
+                    <form> agrupa os campos que o usuário deve preencher.
+
+                    id="formCalculadora":
+                    cria uma identificação única para o formulário.
+
+                    O JavaScript usa esse id para encontrar o formulário:
+
+                    document.getElementById("formCalculadora")
+
+                    Quando o botão "Calcular" for pressionado, o evento
+                    submit deste formulário será disparado.
+                    -->
+                    <form id="formCalculadora">
+
+
+                        <!--
+                       Agrupa o rótulo e o campo do primeiro número.
+
+                       mb-3:
+                       adiciona espaço abaixo deste grupo.
+                       -->
+                        <div class="mb-3">
+
+
+                            <!--
+                           <label> é o rótulo ou legenda de um campo.
+
+                           for="numero1":
+                           conecta este rótulo ao elemento que possui id="numero1".
+
+                           Ao clicar no texto "Primeiro número",
+                           o navegador coloca o foco no campo correspondente.
+
+                           form-label:
+                           classe do Bootstrap para estilizar rótulos de formulário.
+                           -->
+                            <label
+                                    for="numero1"
+                                    class="form-label"
+                            >
+                                Primeiro número
+                            </label>
+
+
+
+
+
+                            <!--
+                            <input> cria um campo de entrada.
+
+                            type="number":
+                            permite a entrada de números.
+
+                            class="form-control form-control-lg":
+                            form-control aplica o estilo do Bootstrap.
+                            form-control-lg deixa o campo maior.
+
+                            id="numero1":
+                            identifica o campo.
+                            Esse id é usado pelo <label> e pelo JavaScript.
+
+                            placeholder="Exemplo: 10":
+                            mostra um texto de exemplo enquanto o campo está vazio.
+                            O placeholder não é um valor digitado de verdade.
+
+                            step="any":
+                            permite números decimais.
+                            Sem isso, o navegador pode esperar apenas passos inteiros.
+
+                            required:
+                            torna o preenchimento obrigatório.
+                            O navegador impede o envio se o campo estiver vazio.
+
+                            <input> é uma tag vazia, portanto não possui </input>.
+                            -->
+                            <input
+                                    type="number"
+                                    class="form-control form-control-lg"
+                                    id="numero1"
+                                    placeholder="Exemplo: 10"
+                                    step="any"
+                                    required
+                            >
+                        </div>
+
+
+                        <!--
+                        Agrupa o rótulo e a lista de operações.
+
+                        mb-3 cria espaço abaixo do grupo.
+                        -->
+                        <div class="mb-3">
+
+                            <!--
+                            Este rótulo está associado à lista que possui id="operacao".
+                            -->
+                            <label
+                                    for="operacao"
+                                    class="form-label"
+                            >
+                                Operação
+                            </label>
+
+
+
+
+                            <!--
+                            <select> cria uma lista de seleção.
+
+                            form-select:
+                            aplica o estilo de seleção do Bootstrap.
+
+                            form-select-lg:
+                            deixa a lista maior.
+
+                            id="operacao":
+                            permite que o label e o JavaScript encontrem este elemento.
+
+                            required:
+                            torna a escolha obrigatória.
+
+                            Como a primeira opção já é "Soma", sempre haverá inicialmente
+                            uma operação selecionada.
+                            -->
+                            <select
+                                    class="form-select form-select-lg"
+                                    id="operacao"
+                                    required
+                            >
+
+
+
+
+                                <!--
+                                Cada <option> é uma opção da lista.
+
+                                "Soma (+)" é o texto que o usuário vê.
+
+                                value="soma" é o valor que o JavaScript recebe.
+
+                                Portanto:
+                                usuário vê: Soma (+)
+                                JavaScript recebe: soma
+                                -->
+                                <option value="soma">
+                                    Soma (+)
+                                </option>
+
+
+                                <!--
+                               Se esta opção for escolhida,
+                               campoOperacao.value será "subtracao".
+                               -->
+                                <option value="subtracao">
+                                    Subtração (−)
+                                </option>
+
+
+                                <!--
+                               Se esta opção for escolhida,
+                               campoOperacao.value será "multiplicacao".
+                               -->
+                                <option value="multiplicacao">
+                                    Multiplicação (×)
+                                </option>
+
+
+                                <!--
+                               Se esta opção for escolhida,
+                               campoOperacao.value será "divisao".
+                               -->
+                                <option value="divisao">
+                                    Divisão (÷)
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <!--
+                        Agrupa o rótulo e o campo do segundo número.
+
+                        mb-4 cria um espaço um pouco maior abaixo deste grupo,
+                        separando o segundo campo do botão.
+                        -->
+                        <div class="mb-4">
+
+                            <!--
+                          O for conecta este rótulo ao campo com id="numero2".
+                          -->
+                            <label
+                                    for="numero2"
+                                    class="form-label"
+                            >
+                                Segundo número
+                            </label>
+
+
+                            <!--
+                          Campo para receber o segundo número.
+
+                          Sua estrutura é praticamente igual à do primeiro campo.
+                          A principal diferença é o id="numero2".
+                          -->
+                            <input
+                                    type="number"
+                                    class="form-control form-control-lg"
+                                    id="numero2"
+                                    placeholder="Exemplo: 2"
+                                    step="any"
+                                    required
+                            >
+                        </div>
+
+
+                        <!--
+                        Cria o botão.
+
+                        type="submit":
+                        informa que o botão envia o formulário.
+
+                        Ao clicar nele, ocorre o evento "submit" do formulário.
+                        É esse evento que seu JavaScript está escutando.
+
+                        btn:
+                        aplica o estilo básico de botão do Bootstrap.
+
+                        btn-primary:
+                        aplica o estilo de botão principal.
+
+                        btn-lg:
+                        deixa o botão maior.
+
+                        w-100:
+                        define width: 100%, fazendo o botão ocupar toda a largura.
+
+                        Nosso style.css também modifica a classe .btn-primary,
+                        adicionando o gradiente roxo.
+                        -->
+                        <button
+                                type="submit"
+                                class="btn btn-primary btn-lg w-100"
+                        >
+                            Calcular
+                        </button>
+                    </form>
+
+
+                    <!--
+                   Esta <div> é a área onde o JavaScript exibe o resultado.
+
+                   id="resultado":
+                   permite que o JavaScript encontre e modifique este elemento.
+
+                   No JavaScript:
+                   document.getElementById("resultado")
+
+                   class="resultado mt-4":
+                   resultado é uma classe criada no style.css.
+                   mt-4 é uma classe do Bootstrap que adiciona espaço acima.
+
+                   role="status":
+                   informa a tecnologias assistivas que esta área apresenta
+                   uma informação de status.
+
+                   aria-live="polite":
+                   informa aos leitores de tela que o conteúdo poderá mudar.
+                   Quando o JavaScript inserir o resultado, o leitor de tela
+                   poderá anunciá-lo sem interromper abruptamente o usuário.
+
+                   O texto inicial será substituído pelo JavaScript depois do cálculo.
+                   -->
+                    <div
+                            id="resultado"
+                            class="resultado mt-4"
+                            role="status"
+                            aria-live="polite"
+                    >
+                        O resultado aparecerá aqui.
+                    </div>
+
+
+                    <!-- Fecha o conteúdo interno do cartão. -->
+                </div>
+
+
+                <!-- Fecha o cartão da calculadora. -->
+            </div>
+
+
+
+                <!--
+            Cria o texto localizado abaixo do cartão.
+
+            text-center:
+            centraliza o texto.
+
+            texto-rodape:
+            classe criada no style.css.
+
+            mt-3:
+            adiciona espaço acima do parágrafo.
+            -->
+
+            <p class="text-center texto-rodape mt-3">
+                Desenvolvido com HTML, CSS, JavaScript e Bootstrap
+            </p>
+            <!-- Fecha a coluna do Bootstrap. -->
+        </div>
+
+        <!-- Fecha a linha do Bootstrap. -->
+    </div>
+
+    <!-- Fecha o conteúdo principal. -->
+</main>
+
+<!--
+Importa o arquivo JavaScript.
+
+src="script.js" informa o caminho do arquivo.
+
+A tag está no final do <body> para que o navegador crie primeiro
+todos os elementos HTML e só depois execute o JavaScript.
+
+Isso é importante porque o JavaScript procura elementos como:
+- formCalculadora;
+- numero1;
+- numero2;
+- operacao;
+- resultado.
+
+Se o script fosse executado antes da criação desses elementos,
+o JavaScript poderia não encontrá-los.
+
+<script> não é uma tag vazia.
+Por isso, mesmo usando um arquivo externo, ela precisa ser fechada:
+</script>
+-->
+<script src="script.js"></script>
+
+<!-- Fecha a parte visível do documento. -->
+</body>
+
+<!-- Fecha o documento HTML. -->
+</html>
